@@ -1,3 +1,4 @@
 streamlit>=1.0.0
 keras>=2.6.0
 tensorflow>=2.6.1
+tensorflow-hub==0.12.0
