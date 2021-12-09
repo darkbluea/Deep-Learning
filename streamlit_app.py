@@ -56,4 +56,5 @@ hide_menu_style = """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 if __name__ == '__main__':
+	load_model("model.h5")
 	main()
