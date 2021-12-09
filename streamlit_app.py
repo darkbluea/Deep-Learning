@@ -1,6 +1,7 @@
 import streamlit as st
 import keras
 from keras.optimizers import adam_v2
+from keras.preprocessing.image import ImageDataGenerator
 import tensorflow_hub as hub
 
 
@@ -27,13 +28,25 @@ def load_model(modelfile):
     resnet_model2.load_weights(modelfile)
     return resnet_model2
 
+def test_picture(model, path):
+    df = pd.DataFrame([path], columns = ['Path'])
+    df['Label'] = label
+    test_generator = ImageDataGenerator(rescale = 1./255,)
+    test = test_generator.flow_from_dataframe(dataframe = df,
+                                    class_mode  = 'binary',
+                                    x_col       = 'Path',
+                                    y_col       = 'Label',
+                                    shuffle     = False,
+                                    batch_size  = 32,
+                                    target_size = (224, 224))
+    return bool(model.predict(test)[0])
 
-st.set_page_config(page_title="Heart Disease", page_icon="https://www.freeiconspng.com/thumbs/heart-png/heart-png-15.png", layout='centered', initial_sidebar_state="collapsed")
+st.set_page_config(page_title="page_title", page_icon="https://www.freeiconspng.com/thumbs/heart-png/heart-png-15.png", layout='centered', initial_sidebar_state="collapsed")
 
-def main():
+def main(model):
     html_temp = """
     <div>
-    <h1 style="color:MEDIUMSEAGREEN;text-align:left;"> Heart guess</h1>
+    <h1 style="color:MEDIUMSEAGREEN;text-align:left;"> Title</h1>
     </div>
     """
     st.markdown(html_temp, unsafe_allow_html=True)
@@ -46,5 +59,5 @@ hide_menu_style = """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 if __name__ == '__main__':
-	load_model("model.h5")
-	main()
+	model = load_model("model.h5")
+	main(model)
