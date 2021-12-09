@@ -1,6 +1,6 @@
+import streamlit as st
 import keras
 import tensorflow_hub as hub
-import streamlit as st
 
 
 def load_model(modelfile):
