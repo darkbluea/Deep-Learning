@@ -17,6 +17,8 @@ def load_model(modelfile):
         keras.layers.Dense(1, activation = 'sigmoid'),
     ])
 
+    metrics = ['accuracy', keras.metrics.AUC(), keras.metrics.Recall()]
+
     resnet_model2.compile(loss='binary_crossentropy',
                             metrics = [metrics],
                             optimizer = adam_v2.Adam(learning_rate = 5e-4))
