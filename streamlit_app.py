@@ -31,7 +31,7 @@ def load_model(modelfile):
 
 def test_picture(model, path):
     df = pd.DataFrame([path], columns = ['Path'])
-    df['Label'] = label
+    df['Label'] = [re.findall('[0-9]{4}_(.+?).png', file)[0]]
     test_generator = ImageDataGenerator(rescale = 1./255,)
     test = test_generator.flow_from_dataframe(dataframe = df,
                                     class_mode  = 'binary',
