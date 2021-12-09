@@ -50,6 +50,27 @@ def main(model):
     </div>
     """
     st.markdown(html_temp, unsafe_allow_html=True)
+    paths_good = [
+	        "png/MCUCXR_0001_0.png",
+	        "png/MCUCXR_0002_0.png",
+	        "png/MCUCXR_0003_0.png",
+	        "png/MCUCXR_0004_0.png",
+	        "png/MCUCXR_0005_0.png",
+    ]
+    paths_bad = [
+	        "png/MCUCXR_0104_1.png",
+	        "png/MCUCXR_0108_1.png",
+	        "png/MCUCXR_0113_1.png",
+	        "png/MCUCXR_0117_1.png",
+	        "png/MCUCXR_0126_1.png",
+    ]
+    
+    for path_good in paths_good:
+        result = test_picture(model, path_good)
+        col1.write(str(result))
+    for path_bad in paths_bad:
+        result = test_picture(model, path_good)
+        col1.write(str(result))
 
 hide_menu_style = """
         <style>
