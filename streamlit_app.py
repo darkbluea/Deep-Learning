@@ -3,6 +3,7 @@ import keras
 from keras.optimizers import adam_v2
 from keras.preprocessing.image import ImageDataGenerator
 import tensorflow_hub as hub
+import pandas as pd
 
 
 def load_model(modelfile):
