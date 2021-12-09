@@ -7,3 +7,4 @@ pandas==1.0.5
 matplotlib==3.3.0
 scikit_learn==0.24.1
 keras==2.4.0
+tensorflow==2.6.1
