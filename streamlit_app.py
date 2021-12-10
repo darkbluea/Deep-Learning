@@ -30,11 +30,10 @@ def load_model(modelfile):
     resnet_model2.load_weights(modelfile)
     return resnet_model2
 
-def test_picture(model, path, st):
+def test_picture(model, path):
     df = pd.DataFrame(path, columns = ['Path'])
     df['Label'] = [re.findall('[0-9]{4}_(.+?).png', single_path)[0] for single_path in path]
     test_generator = ImageDataGenerator(rescale = 1./255,)
-    st.write(str(df))
     test = test_generator.flow_from_dataframe(dataframe = df,
                                     class_mode  = 'binary',
                                     x_col       = 'Path',
@@ -42,7 +41,7 @@ def test_picture(model, path, st):
                                     shuffle     = False,
                                     batch_size  = 32,
                                     target_size = (224, 224))
-    return bool(model.predict(test)[0])
+    return model.predict(test)
 
 st.set_page_config(page_title="page_title", page_icon="https://www.freeiconspng.com/thumbs/heart-png/heart-png-15.png", layout='centered', initial_sidebar_state="collapsed")
 
@@ -68,7 +67,7 @@ def main(model):
 	        "png/MCUCXR_0126_1.png",
     ]
     
-    result = test_picture(model, paths_good + paths_bad, st)
+    result = test_picture(model, paths_good + paths_bad)
     st.write(str(result))
 
 hide_menu_style = """
