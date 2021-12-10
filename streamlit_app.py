@@ -90,8 +90,10 @@ def main(model):
     st.write(str(file))
     if st.button('Predict our own'):
         if file is not None:
-            results = test_picture(model, paths_good + paths_bad + "")
+            results = test_picture(model, paths_good + paths_bad + [file.name])
             prompt_result(results[-1], st)
+        else:
+            st.warning("you need to upload a file before Predict it")
 
 hide_menu_style = """
         <style>
