@@ -73,8 +73,8 @@ def main(model):
     for result in results:
         st.write(result)
         image = Image.open(result[0])
+        caption = "prob = " + str(result[1]) + "result = " + str(result[2])
         st.image(image)
-    st.write(str(result))
 
 hide_menu_style = """
         <style>
