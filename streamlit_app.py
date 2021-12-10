@@ -50,7 +50,7 @@ st.set_page_config(page_title="page_title", page_icon="https://www.freeiconspng.
 def main(model):
     html_temp = """
     <div>
-    <h1 style="color:MEDIUMSEAGREEN;text-align:left;"> Title</h1>
+    <h1 style="color:MEDIUMSEAGREEN;text-align:left;"> Neural Network prediction  on patient lungs</h1>
     </div>
     """
     st.markdown(html_temp, unsafe_allow_html=True)
