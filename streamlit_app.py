@@ -30,10 +30,11 @@ def load_model(modelfile):
     resnet_model2.load_weights(modelfile)
     return resnet_model2
 
-def test_picture(model, path):
+def test_picture(model, path, st):
     df = pd.DataFrame([path], columns = ['Path'])
     df['Label'] = [re.findall('[0-9]{4}_(.+?).png', path)[0]]
     test_generator = ImageDataGenerator(rescale = 1./255,)
+    st.write(str(df))
     test = test_generator.flow_from_dataframe(dataframe = df,
                                     class_mode  = 'binary',
                                     x_col       = 'Path',
@@ -68,11 +69,11 @@ def main(model):
     ]
     
     for path_good in paths_good:
-        result = test_picture(model, path_good)
-        col1.write(str(result))
+        result = test_picture(model, path_good, st)
+        st.write(str(result))
     for path_bad in paths_bad:
-        result = test_picture(model, path_good)
-        col1.write(str(result))
+        result = test_picture(model, path_good, st)
+        st.write(str(result))
 
 hide_menu_style = """
         <style>
