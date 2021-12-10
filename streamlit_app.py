@@ -45,12 +45,12 @@ def test_picture(model, path):
     temp = [(float(prob), True if prob > 0.33 else False) for prob in model.predict(test)]
     return [(path[i], temp[i][0], temp[i][1]) for i in range(len(path))]
 
-st.set_page_config(page_title="page_title", page_icon="https://www.freeiconspng.com/thumbs/heart-png/heart-png-15.png", layout='centered', initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Neural Network prediction on patient lungs", page_icon="https://www.freeiconspng.com/thumbs/heart-png/heart-png-15.png", layout='centered', initial_sidebar_state="collapsed")
 
 def main(model):
     html_temp = """
     <div>
-    <h1 style="color:MEDIUMSEAGREEN;text-align:left;"> Neural Network prediction  on patient lungs</h1>
+    <h1 style="color:MEDIUMSEAGREEN;text-align:left;"> Neural Network prediction on patient lungs </h1>
     </div>
     """
     st.markdown(html_temp, unsafe_allow_html=True)
