@@ -71,13 +71,14 @@ def main(model):
     
     results = test_picture(model, paths_good + paths_bad)
     i = 0
-    col1,col2  = st.beta_columns([2,2])
+    col_list_1 = st.columns(5)
+    col_list_2 = st.columns(5)
     for result in results:
         st_place = st
         if i < 10:
-            st_place = col2
+            st_place = col_list_2[i - 5]
         if i < 5:
-            st_place = col1
+            st_place = col_list_1[i]
         image = Image.open(result[0])
         caption = "prob = " + str(result[1]) + "\nresult = " + str(result[2])
         st_place.image(image, caption=caption)
