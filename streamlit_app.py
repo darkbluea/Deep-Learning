@@ -72,9 +72,9 @@ def main(model):
     results = test_picture(model, paths_good + paths_bad)
     for result in results:
         image = Image.open(result[0])
-        caption = "prob = " + str(result[1]) + "result = " + str(result[2])
+        caption = "prob = " + str(result[1]) + "\nresult = " + str(result[2])
+        st.image(image, caption=caption)
         st.write(caption)
-        st.image(image)
 
 hide_menu_style = """
         <style>
