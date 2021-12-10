@@ -70,11 +70,18 @@ def main(model):
     ]
     
     results = test_picture(model, paths_good + paths_bad)
+    i = 0
+    col1,col2  = st.beta_columns([2,2])
     for result in results:
+        st_place = st
+        if i < 10:
+            st_place = col2
+        if i < 5:
+            st_place = col1
         image = Image.open(result[0])
         caption = "prob = " + str(result[1]) + "\nresult = " + str(result[2])
-        st.image(image, caption=caption)
-        st.write(caption)
+        st_place.image(image, caption=caption)
+	i += 1
 
 hide_menu_style = """
         <style>
