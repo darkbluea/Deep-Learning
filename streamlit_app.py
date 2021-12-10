@@ -68,7 +68,7 @@ def main(model):
 	        "png/MCUCXR_0126_1.png",
     ]
     
-    result = test_picture(model, path_good + paths_bad, st)
+    result = test_picture(model, paths_good + paths_bad, st)
     st.write(str(result))
 
 hide_menu_style = """
