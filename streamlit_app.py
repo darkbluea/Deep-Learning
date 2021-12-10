@@ -42,8 +42,7 @@ def test_picture(model, path):
                                     batch_size  = 32,
                                     target_size = (224, 224))
     temp = [(float(prob), True if prob > 0.33 else False) for prob in model.predict(test)]
-    to_return = [(path[i], temp[i](0), temp[i](1)) for i in range(len(path))]
-    return to_return
+    return [(path[i], temp[i][0], temp[i][1]) for i in range(len(path))]
 
 st.set_page_config(page_title="page_title", page_icon="https://www.freeiconspng.com/thumbs/heart-png/heart-png-15.png", layout='centered', initial_sidebar_state="collapsed")
 
