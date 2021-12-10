@@ -81,7 +81,7 @@ def main(model):
         image = Image.open(result[0])
         caption = "prob = " + str(result[1]) + "\nresult = " + str(result[2])
         st_place.image(image, caption=caption)
-	i += 1
+        i += 1
 
 hide_menu_style = """
         <style>
