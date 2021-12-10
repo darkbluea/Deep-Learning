@@ -31,8 +31,8 @@ def load_model(modelfile):
     return resnet_model2
 
 def test_picture(model, path, st):
-    df = pd.DataFrame([path], columns = ['Path'])
-    df['Label'] = [re.findall('[0-9]{4}_(.+?).png', path)[0]]
+    df = pd.DataFrame(path, columns = ['Path'])
+    df['Label'] = [re.findall('[0-9]{4}_(.+?).png', single_path)[0] for single_path in path]
     test_generator = ImageDataGenerator(rescale = 1./255,)
     st.write(str(df))
     test = test_generator.flow_from_dataframe(dataframe = df,
@@ -68,12 +68,8 @@ def main(model):
 	        "png/MCUCXR_0126_1.png",
     ]
     
-    for path_good in paths_good:
-        result = test_picture(model, path_good, st)
-        st.write(str(result))
-    for path_bad in paths_bad:
-        result = test_picture(model, path_good, st)
-        st.write(str(result))
+    result = test_picture(model, path_good + paths_bad, st)
+    st.write(str(result))
 
 hide_menu_style = """
         <style>
