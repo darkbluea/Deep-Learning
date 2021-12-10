@@ -5,6 +5,7 @@ from keras.preprocessing.image import ImageDataGenerator
 import tensorflow_hub as hub
 import pandas as pd
 import re
+from PIL import Image
 
 
 def load_model(modelfile):
@@ -68,7 +69,11 @@ def main(model):
 	        "png/MCUCXR_0126_1.png",
     ]
     
-    result = test_picture(model, paths_good + paths_bad)
+    results = test_picture(model, paths_good + paths_bad)
+    for result in results:
+        st.write(result)
+        image = Image.open(result[0])
+        st.image(image)
     st.write(str(result))
 
 hide_menu_style = """
