@@ -73,16 +73,21 @@ def main(model):
     i = 0
     col_list_1 = st.columns(5)
     col_list_2 = st.columns(5)
+    def prompt_result(result, st_place):
+        image = Image.open(result[0])
+        caption = "prob = " + str(result[1]) + "\nresult = " + str(result[2])
+        st_place.image(image, caption=caption)
     for result in results:
         st_place = st
         if i < 10:
             st_place = col_list_2[i - 5]
         if i < 5:
             st_place = col_list_1[i]
-        image = Image.open(result[0])
-        caption = "prob = " + str(result[1]) + "\nresult = " + str(result[2])
-        st_place.image(image, caption=caption)
+        prompt_result(result, st_place)
         i += 1
+    if st.button('Predict our own'):
+        results = test_picture(model, paths_good + paths_bad + "")
+        prompt_result(results[-1], st)
 
 hide_menu_style = """
         <style>
