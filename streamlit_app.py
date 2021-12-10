@@ -87,15 +87,6 @@ def main(model):
             st_place = col_list_1[i]
         prompt_result(result, st_place)
         i += 1
-    
-    file = st.file_uploader("choose your picture", type="png")
-    st.write(str(file))
-    if st.button('Predict our own'):
-        if file is not None:
-            results = test_picture(model, paths_good + paths_bad + [file.name])
-            prompt_result(results[-1], st)
-        else:
-            st.warning("you need to upload a file before Predict it")
 
 hide_menu_style = """
         <style>
